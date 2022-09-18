@@ -8,5 +8,18 @@ html(lang="en")
         link(rel="stylesheet", href="./assets/style/index.scss")
     body
         .container
-            h1 Какова вероятность, что Вы порекомендуете VOKA своим друзьям и близким?
-            p Где 0 - «Ни в коем случае не буду рекомендовать», 10 - «Обязательно порекомендую». fhg
+            //- h1 Какова вероятность, что Вы порекомендуете VOKA своим друзьям и близким?
+            //- p Где 0 - «Ни в коем случае не буду рекомендовать», 10 - «Обязательно порекомендую»
+            .field-custom
+                input.field-custom__input(type="text" name="text" placeholder="Поле для ввода ответа")
+                input.field-custom__input.field-custom_small(type="text" name="text" placeholder="Поле для ввода ответа")
+            button.btn Завершить опрос
+            button.btn.btn_small Завершить опрос
+            .field-custom
+                input.field-custom__input.field-custom__input_small-area(type="text" name="text" placeholder="Поле для ввода ответа")
+                button.btn.field-custom__btn Получить код
+
+            h2.label-title.label-title_decorate Какова вероятность, что Вы порекомендуете VOKA своим друзьям и близким? 
+            label.label-title Почему Вы поставили именно эту оценку?    
+
+                

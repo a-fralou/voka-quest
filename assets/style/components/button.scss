@@ -1,0 +1,23 @@
+.btn {
+   background: #43EFCE;
+   border-radius: 27px;
+   border: none;
+   color: #001C80;
+   width: 267px;
+   height: 55px;
+   font-size: 20px;
+   cursor: pointer;
+   transition: $transition;
+
+   &_small{
+      width: 220px;
+   }
+
+   &:hover,:focus{
+      background: #2fdcb9;
+   }
+
+   &:active{
+      background: #25b598;
+   }
+}

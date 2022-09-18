@@ -1,0 +1,40 @@
+
+.field-custom {
+   max-width: 696px;
+   position: relative;
+
+   &__input{
+      border: 2px solid #43EFCE;
+      border-radius: 27px;
+      background: none;      
+      height: 55px;
+      font-size: 20px;
+      padding: 0 40px;
+      width: 100%;
+      color: #ffff;
+      outline: none;
+
+     
+
+      &_small-area{
+         padding: 0 307px 0 40px;
+      }
+   }
+   
+
+   &_small {
+      max-width: 682px;
+      height: 48px;
+   }
+
+   &__btn{
+      position: absolute;
+      right: 0;
+   }
+
+}
+
+
+
+
+

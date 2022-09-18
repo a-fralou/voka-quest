@@ -1,6 +1,7 @@
 @import './abstracts/index.scss';
 @import './libs/index.scss';
 @import './base/index.scss';
+@import './components/index.scss';
 
 body {
     background-color: #001C85;
@@ -16,7 +17,7 @@ h1 {
 
 p {
     font-family: 'Gotham Pro';
-font-style: normal;
-font-weight: 400;
-font-size: 19px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
 }
