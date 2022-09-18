@@ -1,0 +1,32 @@
+{
+  "name": "voka-quest",
+  "version": "1.0.0",
+  "description": "",
+  "source": "index.pug",
+  "scripts": {
+    "start": "parcel index.pug",
+    "build": "parcel build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a-fralou/voka-quest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/a-fralou/voka-quest/issues"
+  },
+  "homepage": "https://github.com/a-fralou/voka-quest#readme",
+  "devDependencies": {
+    "@parcel/transformer-js": "^2.7.0",
+    "@parcel/transformer-pug": "^2.7.0",
+    "@parcel/transformer-sass": "^2.7.0",
+    "parcel": "^2.7.0",
+    "sharp": "^0.29.3"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.6",
+    "bootstrap": "^5.2.0",
+    "imask": "^6.4.2"
+  }
+}

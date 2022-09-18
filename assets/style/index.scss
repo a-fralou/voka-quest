@@ -1,0 +1,22 @@
+@import './abstracts/index.scss';
+@import './libs/index.scss';
+@import './base/index.scss';
+
+body {
+    background-color: #001C85;
+    color: #fff;
+}
+
+h1 {
+    font-family: 'Gotham Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 28.3795px;
+}
+
+p {
+    font-family: 'Gotham Pro';
+font-style: normal;
+font-weight: 400;
+font-size: 19px;
+}
