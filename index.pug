@@ -6,20 +6,45 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Document
         link(rel="stylesheet", href="./assets/style/index.scss")
+        
     body
-        .container
-            //- h1 Какова вероятность, что Вы порекомендуете VOKA своим друзьям и близким?
-            //- p Где 0 - «Ни в коем случае не буду рекомендовать», 10 - «Обязательно порекомендую»
-            .field-custom
-                input.field-custom__input(type="text" name="text" placeholder="Поле для ввода ответа")
-                input.field-custom__input.field-custom_small(type="text" name="text" placeholder="Поле для ввода ответа")
-            button.btn Завершить опрос
-            button.btn.btn_small Завершить опрос
-            .field-custom
-                input.field-custom__input.field-custom__input_small-area(type="text" name="text" placeholder="Поле для ввода ответа")
-                button.btn.field-custom__btn Получить код
+        include ./view/header.pug
+        include ./view/recommendation.pug
+        include ./view/grade.pug
+        include ./view/video-content.pug
+        include ./view/services.pug
 
-            h2.label-title.label-title_decorate Какова вероятность, что Вы порекомендуете VOKA своим друзьям и близким? 
-            label.label-title Почему Вы поставили именно эту оценку?    
+        include ./view/name.pug
+        include ./view/number.pug
+        include ./view/sms.pug
+
+        services
+
+        
+        .container
+            
+            //- .field-custom
+            //-     input.field-custom__input(type="text" name="text" placeholder="Поле для ввода ответа")
+            //-     input.field-custom__input.field-custom_small(type="text" name="text" placeholder="Поле для ввода ответа")
+            //- button.btn Завершить опрос
+            //- button.btn.btn_small Завершить опрос
+            //- .field-custom
+            //-     input.field-custom__input.field-custom__input_small-area(type="text" name="text" placeholder="Поле для ввода ответа")
+            //-     button.btn.field-custom__btn Получить код
+
+            //- h2.label-title.label-title_decorate Какова вероятность, что Вы порекомендуете VOKA своим друзьям и близким? 
+            //- label.label-title Почему Вы поставили именно эту оценку?   
+            
+            
+            .checkbox
+                label.checkbox__lable(for="checkbox_1") 1
+                input.checkbox__input(type="checkbox" id="checkbox_1" value="1") 
+
+            //- .checkbox
+            //-     lable.checkbox__lable(for="checkbox_1") khgcfktckuyf
+            //-         input.checkbox__input(type="checkbox" id="checkbox_1" value="1") 
+
+            button.btn.btn_end Завершить опрос
+                 
 
                 

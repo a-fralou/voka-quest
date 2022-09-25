@@ -1,0 +1,16 @@
+.details {
+   font-weight: 100;
+   font-size: 19px;
+   line-height: 24px;
+   color: rgba(255, 255, 255, 0.7);
+   padding-left: 49px;
+   margin-top: 15px;
+}
+
+.form{   
+   margin-left: 49px;
+
+   &__recommendation{
+      display: flex;
+   }
+}

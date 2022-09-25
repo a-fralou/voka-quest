@@ -9,16 +9,22 @@
    cursor: pointer;
    transition: $transition;
 
-   &_small{
+   &_small {
       width: 220px;
    }
 
-   &:hover,:focus{
+   &_end {
+      margin-top: 70px;
+      margin-left: 49px;
+   }
+
+   &:hover,
+   :focus {
       background: #2fdcb9;
    }
 
-   &:active{
+   &:active {
       background: #25b598;
    }
-   
+
 }
