@@ -1,89 +1,18 @@
-// .checkbox {
-//    $parent:&;
-//    position: relative;
-//    margin-bottom: 100px;
-//    padding-left: 30px;
-//    display: flex;
-//    flex-direction: column;
-
-  
-
-//    &__lable {
-//       cursor: pointer;
-//       font-size: 20px;
-      
-
-//       &::before {
-//          content: "";
-//          display: block;
-//          width: 22px;
-//          height: 22px;
-//          border: 2px solid #fff;
-//          border-radius: 50%;
-//          background: none;
-//          position: absolute;
-//          top: 0;
-//          left: 0;
-//          z-index: 1;
-//          transition: background .1s linear, border .1s linear;
-//       }
-
-//       &::after{
-//          content: "";
-//          display: block;
-//          width: 10px;
-//          height: 10px;
-//          background: url(../images/Ellipse.svg) no-repeat;         
-//          opacity: 0;
-//          position: absolute;
-//          top: 6px;
-//          left: 6px;
-//          z-index: 2;
-//          transition: opacity .1s linear;
-//       }
-
-      
-//    }
-
-//    &__input {
-//       appearance: none;
-//       position: absolute;
-     
-
-//       &:checked + #{$parent}__lable::after{
-//          opacity: 1;
-//       }
-//    }
-// }
-
-
 .checkbox{
    
    $parent: &;
    position: relative;
-   padding-left: 30px;
-
-   &_indent:not(:last-child){
-      padding-bottom: 33px;
-      
-   }
-
-   &_indent:first-child{
-      margin-top: 43px;
-   }
    
    &__other{
       display: flex;
+      align-items: center;
    }
 
    &__lable {
+      position: relative;
       cursor: pointer;
       font-size: 20px;
-
-      &_form{
-         font-size: 23px;
-         padding-left: 26px;
-      }
+      padding-left: 44px;
 
       &::before {
          content: "";         
@@ -104,13 +33,36 @@
          content: "";         
          width: 10px;
          height: 10px;
-         background: url(../images/Ellipse.svg) no-repeat;         
+         border-radius: 10px;
+         background: #fff;        
          opacity: 0;
          position: absolute;
          top: 6px;
          left: 6px;
          z-index: 2;
          transition: opacity .1s linear;
+      }
+   }
+
+   &_vertical {
+      width: 22px;
+      #{$parent}__lable {
+         display: flex;
+         justify-content: center;
+
+         padding-left: 0;
+         padding-bottom: 44px;
+
+         &::before {
+            top: auto;
+            bottom: 0;
+         }
+   
+   
+         &::after{
+            bottom: 6px;
+            top: auto;
+         }
       }
    }
 
