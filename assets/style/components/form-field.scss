@@ -1,0 +1,15 @@
+.form-field {
+    padding-left: 49px;
+
+    &>*:not(:last-child) {
+        padding-bottom: 36px;
+    }
+
+    &_row {
+        display: flex;
+        &>*:not(:last-child) {
+            margin-right: 49px;
+        }
+    }
+
+}

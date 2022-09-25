@@ -6,7 +6,10 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Document
         link(rel="stylesheet", href="./assets/style/index.scss")
+        
     body
-        .container
-            h1 Какова вероятность, что Вы порекомендуете VOKA своим друзьям и близким?
-            p Где 0 - «Ни в коем случае не буду рекомендовать», 10 - «Обязательно порекомендую». fhg
+        include ./view/header.pug
+        include ./view/recommendation.pug
+        include ./view/grade.pug
+        include ./view/video-content.pug
+                

@@ -1,0 +1,58 @@
+.header {
+   position: relative;
+   padding-top: 41px;
+   padding-bottom: 240px;
+   background-image: url(../images/voka_new_season_dad_2.png);
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+
+.header-desc {
+   display: flex;
+   flex-direction: column;
+}
+
+
+.link {
+   position: relative;
+   font-size: 19px;
+   color: rgba(255, 255, 255, 0.8);
+   padding-left: 17px;
+   display: inline-flex;
+   align-items: center;
+   margin-bottom: 91px;
+
+   &::before {
+      content: "";
+      width: 10px;
+      height: 11px;
+      background-image: url(../images/Vector1.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: absolute;
+      left: 0;
+      top: 4px;
+   }
+
+}
+
+.logo {
+   width: 217px;
+   height: 164px;
+   
+}
+
+.title {
+   font-weight: 400;
+   font-size: 59px;
+   line-height: 74px;
+   padding-top: 107px;
+   padding-bottom: 34px;
+}
+
+.description {
+   font-size: 35px;
+   line-height: 44px;
+   font-weight: 100;
+}

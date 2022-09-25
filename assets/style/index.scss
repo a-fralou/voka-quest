@@ -1,22 +1,24 @@
 @import './abstracts/index.scss';
 @import './libs/index.scss';
 @import './base/index.scss';
+@import './components/index.scss';
 
 body {
     background-color: #001C85;
     color: #fff;
 }
 
-h1 {
-    font-family: 'Gotham Pro';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 28.3795px;
+.container {
+    max-width: 1510px;
+    padding: 0 15px;
+    margin: 0 auto;
 }
 
-p {
-    font-family: 'Gotham Pro';
-font-style: normal;
-font-weight: 400;
-font-size: 19px;
+//utilities
+.mt-1 {
+    margin-top: 27px;
+}
+
+.mt-2 {
+    margin-top: 43px;
 }

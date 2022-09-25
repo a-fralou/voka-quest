@@ -1,0 +1,25 @@
+.label-title {   
+   font-size: 28px;
+   line-height: 35px;
+   color: #FFFFFF;  
+   font-weight: 400;
+   display: block;
+   
+
+   &_decorate{      
+      position: relative;
+      padding-left: 49px;
+      &::before {
+         content: "";
+         height: 27px;
+         width: 27px;
+         background-image: url(../images/Group.svg);
+         background-repeat: no-repeat;
+         background-size: contain;
+         display: block;
+         position: absolute;
+         left: 0;
+         top: 2px
+         }
+   }
+}
