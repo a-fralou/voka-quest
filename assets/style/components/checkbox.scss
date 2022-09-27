@@ -2,6 +2,8 @@
    
    $parent: &;
    position: relative;
+   font-size: 23px;
+   
    
    &__other{
       display: flex;
@@ -10,9 +12,10 @@
 
    &__lable {
       position: relative;
-      cursor: pointer;
-      font-size: 20px;
+      cursor: pointer;     
       padding-left: 44px;
+      font-weight: 100;
+      display: block;
 
       &::before {
          content: "";         
@@ -46,6 +49,7 @@
 
    &_vertical {
       width: 22px;
+      font-size: 20px;
       #{$parent}__lable {
          display: flex;
          justify-content: center;
