@@ -1,4 +1,14 @@
-.container.mt-5   
-   h2.label-title.ml-1 Как можно к Вам обращаться?
-   .field-custom.mt-1
-      input.field-custom__input.ml-1(type="text" name="text" placeholder="Поле для ввода имени")
+.container.mt-5
+   .form-field
+      h2.label-title Как можно к Вам обращаться?
+      .field-custom
+         input.field-custom__input.js-name-fetch(type="text" name="name" placeholder="Поле для ввода имени")
+         .form-error.form-error-name
+.container.mt-4   
+   h2.label-title.ml-1 Пожалуйста, укажите Ваш контактный номер телефона.
+      span Наш специалист свяжется с Вами в случае необходимости.
+   .field-custom.ml-1.mt-1
+      .wrpi
+         input.field-custom__input.field-custom__input_small-area.js-mask-phone(type="text" name="phone" placeholder="+375 (__) ___-__-__")
+         .form-error.form-error-phone
+      button.btn.field-custom__btn.js-fetch-form Получить код

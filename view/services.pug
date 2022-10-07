@@ -1,6 +1,6 @@
 .container.mt-6
    h2.label-title.label-title_decorate Какие еще сервис(ы) для просмотра видеоконтента <br>Вы используете?
-   .form-field.mt-2  
+   .form-field.mt-2.js-choise
       .checkbox
          input.checkbox__input(type="checkbox" id="checkbox_28" value="zala")
          label.checkbox__lable(for="checkbox_28") Zala/ЯСНА
@@ -23,4 +23,5 @@
          input.checkbox__input(type="checkbox" id="checkbox_34" value="other")
          label.checkbox__lable(for="checkbox_34") Другое:  
          .field-custom.field-custom__other              
-            input.field-custom__input.field-custom_small(type="text" name="text" placeholder="Поле для ввода ответа")         
+            input.field-custom__input.field-custom_small(type="text" name="otherservice" placeholder="Поле для ввода ответа")
+      .form-error

@@ -2,10 +2,16 @@
    position: relative;
    padding-top: 41px;
    padding-bottom: 240px;
-   background-image: url(../images/voka_new_season_dad_2.png);
+   background-image: url(../images/voka_new_season_dad_2.jpg);
    background-position: center;
    background-repeat: no-repeat;
    background-size: cover;
+
+   @media screen and (max-width: 640px) {
+      padding-top: 300px;
+      padding-bottom: 35px;
+      background-image: url(../images/voka_new_season_mob.jpg);
+   }
 }
 
 .header-desc {
@@ -22,6 +28,10 @@
    display: inline-flex;
    align-items: center;
    margin-bottom: 91px;
+
+   @media screen and (max-width: 640px) {
+      display: none;
+   }
 
    &::before {
       content: "";
@@ -40,7 +50,10 @@
 .logo {
    width: 217px;
    height: 164px;
-   
+   @media screen and (max-width: 640px) {
+      width: 80px;
+      height: 70px;
+   }
 }
 
 .title {
@@ -49,10 +62,34 @@
    line-height: 74px;
    padding-top: 107px;
    padding-bottom: 34px;
+
+   @media screen and (max-width: 640px) {
+      padding-top: 25px;
+      padding-bottom: 24px;
+      font-size: 32px;
+      line-height: 39px;
+   }
+
+   span {
+      &:nth-child(2) {
+         @media screen and (max-width: 640px) {
+            display: block;
+         }
+      }
+
+      &:nth-child(3) {
+         display: block;
+      }
+   }
 }
 
 .description {
    font-size: 35px;
    line-height: 44px;
    font-weight: 100;
+   @media screen and (max-width: 640px) {
+      font-size: 22px;
+      font-weight: 100;
+      line-height: 28px;
+   }
 }

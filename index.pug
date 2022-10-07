@@ -10,12 +10,34 @@ html(lang="en")
     body        
         include ./view/header.pug
         main
-            include ./view/recommendation.pug
-            include ./view/grade.pug
-            include ./view/video-content.pug
-            include ./view/social-networks.pug
-            include ./view/services.pug
-            include ./view/video-servi-online-cinema.pug
-            include ./view/name.pug
-            include ./view/phone-sms.pug
-            include ./view/end.pug
+            form(action="javascript:void(null);" method="post" data-form-api="phone.php")
+                include ./view/recommendation.pug
+                include ./view/grade.pug
+                include ./view/video-content.pug
+                include ./view/social-networks.pug
+                include ./view/services.pug
+                include ./view/video-servi-online-cinema.pug
+                include ./view/name.pug
+            form(action="javascript:void(null);" method="post" data-form-api="code.php")
+                include ./view/phone-sms.pug
+            form(action="javascript:void(null);" method="post" data-form-api="end.php").js-form-end
+                include ./view/end.pug
+            .modal.fade(id="confirm-modal" tabindex="-1" aria-hidden="true")
+                .modal-dialog.modal-dialog-centered.modal-confirm
+                    .modal-content
+                        .modal-body.modal-confirm
+                            h2.label-title.mb-1 Вам необходим звонок оператора для решения возникших вопросов?
+                            .wrpb
+                                button.btn.js-btn-code.js-btn-yes Да
+                                button.btn.js-btn-code.js-btn-no Нет
+            .modal.fade(id="success-modal-operator" tabindex="-1" aria-hidden="true")
+                .modal-dialog.modal-dialog-centered.modal-confirm
+                    .modal-content
+                        .modal-body.modal-confirm
+                            h2.label-title Спасибо за обратную связь! <br>Наш оператор свяжется с Вами!
+            .modal.fade(id="success-modal" tabindex="-1" aria-hidden="true")
+                .modal-dialog.modal-dialog-centered.modal-confirm
+                    .modal-content
+                        .modal-body.modal-confirm
+                            h2.label-title Спасибо за обратную связь!
+        script(src="./assets/js/index.js" type="module") 

@@ -3,11 +3,18 @@
    $parent: &;
    position: relative;
    font-size: 23px;
+
+   @media screen and (max-width: 640px) {
+      font-size: 16px;
+   }
    
    
    &__other{
       display: flex;
       align-items: center;
+      @media screen and (max-width: 640px) {
+         flex-wrap: wrap;
+      }
    }
 
    &__lable {
@@ -16,6 +23,9 @@
       padding-left: 44px;
       font-weight: 100;
       display: block;
+      @media screen and (max-width: 640px) {
+         padding-left: 35px;
+      }
 
       &::before {
          content: "";         
@@ -29,6 +39,10 @@
          left: 0;
          z-index: 1;
          transition: background .1s linear, border .1s linear;
+         @media screen and (max-width: 640px) {
+            width: 17px;
+            height: 17px;
+         }
       }
 
 
@@ -44,28 +58,47 @@
          left: 6px;
          z-index: 2;
          transition: opacity .1s linear;
+         @media screen and (max-width: 640px) {
+            width: 7px;
+            height: 7px;
+            left: 5px;
+            top: 5px;
+         }
       }
    }
 
    &_vertical {
       width: 22px;
       font-size: 20px;
+      @media screen and (max-width: 640px) {
+         font-size: 18px;
+      }
       #{$parent}__lable {
          display: flex;
          justify-content: center;
 
          padding-left: 0;
          padding-bottom: 44px;
+         @media screen and (max-width: 640px) {
+            padding-bottom: 30px;
+         }
 
          &::before {
             top: auto;
             bottom: 0;
+            @media screen and (max-width: 640px) {
+               left: 3px;
+            }
          }
    
    
          &::after{
             bottom: 6px;
             top: auto;
+            @media screen and (max-width: 640px) {
+               bottom: 5px;
+               left: 8px;
+            }
          }
       }
    }

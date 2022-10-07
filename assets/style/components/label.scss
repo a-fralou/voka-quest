@@ -1,14 +1,33 @@
-.label-title {   
+.label-title {
    font-size: 28px;
    line-height: 35px;
-   color: #FFFFFF;  
+   color: #FFFFFF;
    font-weight: 400;
    display: block;
-   
 
-   &_decorate{      
+   span {
+      display: block;
+
+      @media screen and (max-width: 640px) {
+         font-size: 21px;
+         line-height: 24px;
+         margin-top: 20px;
+      }
+   }
+
+   @media screen and (max-width: 640px) {
+      font-size: 20px;
+      line-height: 27px;
+   }
+
+   &_decorate {
       position: relative;
       padding-left: 49px;
+
+      @media screen and (max-width: 640px) {
+         padding-left: 24px;
+      }
+
       &::before {
          content: "";
          height: 27px;
@@ -20,6 +39,14 @@
          position: absolute;
          left: 0;
          top: 2px
+      }
+
+      @media screen and (max-width: 640px) {
+         &::before {
+            height: 18px;
+            width: 18px;
+            top: 3px
          }
+      }
    }
 }

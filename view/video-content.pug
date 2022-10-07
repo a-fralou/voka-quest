@@ -1,6 +1,6 @@
 .container.mt-6
    h2.label-title.label-title_decorate Какой видеоконтент Вы предпочитаете смотреть на VOKA?
-   .form-field.mt-2  
+   .form-field.mt-2.js-choise
       .checkbox
          input.checkbox__input(type="checkbox" id="checkbox_11" value="premieres")
          label.checkbox__lable(for="checkbox_11") Мировые премьеры фильмов
@@ -41,4 +41,5 @@
          input.checkbox__input(type="checkbox" id="checkbox_23" value="other")
          label.checkbox__lable(for="checkbox_23") Другое:  
          .field-custom.field-custom__other              
-            input.field-custom__input.field-custom_small(type="text" name="text" placeholder="Поле для ввода ответа")                                    
+            input.field-custom__input.field-custom_small(type="text" name="othervideo" placeholder="Поле для ввода ответа")
+      .form-error                              

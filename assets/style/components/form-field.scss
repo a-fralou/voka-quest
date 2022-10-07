@@ -1,14 +1,24 @@
 .form-field {
     padding-left: 49px;
+    @media screen and (max-width: 640px) {
+        padding-left: 24px;
+     }
 
     &>*:not(:last-child) {
         padding-bottom: 36px;
+        @media screen and (max-width: 640px) {
+            padding-bottom: 20px;
+         }
+         
     }
 
     &_row {
         display: flex;
         &>*:not(:last-child) {
             margin-right: 49px;
+            @media screen and (max-width: 640px) {
+                margin-right: 5px;
+             }
         }
     }
 

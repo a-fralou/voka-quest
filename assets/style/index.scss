@@ -21,18 +21,33 @@ body {
 
 .mt-2 {
     margin-top: 43px;
+    @media screen and (max-width: 640px) {
+        margin-top: 30px;
+    }
 }
 
 .mt-4 {
     margin-top: 70px;
+
+    @media screen and (max-width: 640px) {
+        margin-top: 50px;
+    }
 }
 
 .mt-5 {
     margin-top: 90px;
+
+    @media screen and (max-width: 640px) {
+        margin-top: 30px;
+    }
 }
 
 .mt-6 {
     margin-top: 100px;
+
+    @media screen and (max-width: 640px) {
+        margin-top: 50px;
+    }
 }
 
 .mt-7 {
@@ -42,16 +57,54 @@ body {
 .mb {
     margin-bottom: 165px;
 }
-
-
+.mb-1 {
+    margin-bottom: 45px;
+}
 
 .ml-1 {
     margin-left: 49px;
+
+    @media screen and (max-width: 640px) {
+        margin-left: 24px;
+    }
 }
 
-main {
-    background-image: url(../images/bg.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
- }
+.wrpi {
+    position: relative;
+}
+
+.modal-content {
+    background: #001C85;
+    // box-shadow: 0px 12px 61px rgba(0, 0, 0, 0.5);
+    border-radius: 28px;
+}
+
+.modal-confirm {
+    max-width: 800px;
+    .modal-body {
+        background-image: url(../images/modalconfirm.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: inherit;
+        padding: 100px 70px;
+        .label-title{
+            text-align: center;
+        }
+    }
+}
+
+.wrpb {
+    display: flex;
+    justify-content: center;
+    .btn {
+        margin: 0 10px;
+    }
+}
+
+.js-choise {
+    position: relative;
+    .form-error {
+        bottom: -10px;
+    }
+}

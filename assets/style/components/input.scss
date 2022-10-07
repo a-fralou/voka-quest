@@ -5,6 +5,10 @@
    &__other {
       width: 100%;
       padding-left: 27px;
+      @media screen and (max-width: 640px) {
+         margin-top: 25px;
+         padding-left: 0;
+      }
    }
 
    &__input {
@@ -18,20 +22,53 @@
       color: #ffff;
       outline: none;
       font-weight: 100;
+      &--textarea{
+         height: auto;
+         min-height: 55px;
+         padding: 10px 40px;
+      }
+      @media screen and (max-width: 640px) {
+         padding: 0 15px;
+         &--textarea{
+            padding: 10px;
+         }
+      }
+
+      &_small {
+         height: 48px;
+      }
 
       &_small-area {
          padding: 0 307px 0 40px;
+         @media screen and (max-width: 640px) {
+            padding: 0 15px;
+         }
       }
-   }
-
-   &_small {
-      max-width: 682px;
-      height: 48px;
    }
 
    &__btn {
       position: absolute;
       right: 0;
-   }
+      top: 0;
 
+      @media screen and (max-width: 640px) {
+         position: relative;
+         margin-top: 25px;
+      }
+   }
+}
+
+.form-error {
+   display: none;
+    position: absolute;
+    bottom: -20px;
+    color: red;
+    font-size: 15px;
+
+    @media screen and (max-width: 640px) {
+      font-size: 12px;
+   }
+    &--show {
+      display: block;
+    }
 }
