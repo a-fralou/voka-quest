@@ -5,6 +5,7 @@ import IMask from 'imask';
 const confirmModal = new Modal(document.getElementById('confirm-modal'), {});
 const successModalOperator = new Modal(document.getElementById('success-modal-operator'), {});
 const successModal = new Modal(document.getElementById('success-modal'), {});
+const agreementModal = new Modal(document.getElementById('agreement-modal'), {});
 
 const FINISH_LOCAL_STORAGE = 'finish';
 const PHONE_VALUE_FROM_MASK = 'phone';
@@ -78,8 +79,6 @@ Array.from(maskCode).forEach(function (element) {
 const choiseData = document.querySelectorAll('.js-choise')
 
 
-
-
 const eventsSubmitButton = document.querySelector(".js-fetch-form");
 eventsSubmitButton.addEventListener('click', submitPhone);
 
@@ -112,7 +111,7 @@ async function submitPhone() {
                 error.classList.remove("form-error--show")
                 error.innerHTML = '';
                 if (!element.querySelector('input[type=checkbox]:checked')) {
-    
+
                     const error = element.querySelector('.form-error');
                     console.log(error)
                     error.classList.add("form-error--show")
@@ -121,9 +120,9 @@ async function submitPhone() {
                 }
             });
         })
-    
+
         if (!element.querySelector('input[type=checkbox]:checked')) {
-    
+
             const error = element.querySelector('.form-error');
             console.log(error)
             error.classList.add("form-error--show")
@@ -164,21 +163,28 @@ async function submitPhone() {
             }
         });
 
-        const json = await response.json();
-        console.log('Успех:', JSON.stringify(json));
-        document.querySelector(".js-btn-code").removeAttribute('disabled');
+        const { status, info } = await response.json();
+
+        setTimeout(() => {
+            if (status) {
+                document.querySelector(".js-btn-code").removeAttribute('disabled');
+                this.classList.remove("btn--load");
+                this.removeAttribute('disabled');
+            } else {
+                setError('.form-error-phone', info)
+                this.classList.remove("btn--load");
+                this.removeAttribute('disabled');
+            }
+        }, 500);
 
     } catch (err) {
         setTimeout(() => {
             this.classList.remove("btn--load");
             this.removeAttribute('disabled');
-
-            document.querySelector(".js-btn-code").removeAttribute('disabled');
-
             setError('.form-error-phone', 'Ошибка!')
 
             console.error('Ошибка:', err);
-        }, 1000);
+        }, 500);
     }
 }
 
@@ -240,22 +246,29 @@ async function submitCode() {
             }
         });
 
-        const json = await response.json();
-        console.log('Успех:', JSON.stringify(json));
-        localStorage.setItem(FINISH_LOCAL_STORAGE, true);
-        agreeFunc()
+        const { status, info } = await response.json();
+
+        setTimeout(() => {
+            if (status) {
+                localStorage.setItem(FINISH_LOCAL_STORAGE, true);
+                agreeFunc()
+                this.classList.remove("btn--load");
+                this.removeAttribute('disabled');
+            } else {
+                setError('.form-error-code', info)
+                this.classList.remove("btn--load");
+                this.removeAttribute('disabled');
+            }
+        }, 500);
 
     } catch (err) {
         setTimeout(() => {
             this.classList.remove("btn--load");
             this.removeAttribute('disabled');
-
             setError('.form-error-code', 'Ошибка!')
-            localStorage.setItem(FINISH_LOCAL_STORAGE, true);
-            agreeFunc()
 
             console.error('Ошибка:', err);
-        }, 1000);
+        }, 500);
     }
 }
 
@@ -351,8 +364,30 @@ async function submitFinish(cta) {
             }
         });
 
-        const json = await response.json();
-        console.log('Успех:', JSON.stringify(json));
+        const { status, info } = await response.json();
+
+        setTimeout(() => {
+            confirmModal.hide()
+            if (status) {
+                document.querySelector('.js-btn-yes').classList.remove("btn--load")
+                document.querySelector('.js-btn-no').classList.remove("btn--load")
+                document.querySelector('.js-btn-yes').removeAttribute('disabled')
+                document.querySelector('.js-btn-no').removeAttribute('disabled')
+
+                if (cta) {
+                    successModalOperator.show()
+                } else {
+                    successModal.show()
+                }
+            } else {
+                setError('.form-error-code', info)
+                document.querySelector('.js-btn-yes').classList.remove("btn--load")
+                document.querySelector('.js-btn-no').classList.remove("btn--load")
+                document.querySelector('.js-btn-yes').removeAttribute('disabled')
+                document.querySelector('.js-btn-no').removeAttribute('disabled')
+            }
+
+        }, 500);
 
     } catch (err) {
         setTimeout(() => {
@@ -360,17 +395,24 @@ async function submitFinish(cta) {
             document.querySelector('.js-btn-no').classList.remove("btn--load")
             document.querySelector('.js-btn-yes').removeAttribute('disabled')
             document.querySelector('.js-btn-no').removeAttribute('disabled')
-
-            setError('.form-error-code', 'Ошибка!')
+            setError('.form-error-end', 'Ошибка!')
             confirmModal.hide()
-
-            if (cta) {
-                successModalOperator.show()
-            } else {
-                successModal.show()
-            }
-
             console.error('Ошибка:', err);
-        }, 1000);
+        }, 500);
     }
 }
+
+const btnClose = document.querySelector(".btn-close");
+btnClose.addEventListener('click', function () {
+    agreementModal.hide()
+});
+
+const successHidemodal = document.getElementById("success-modal");
+successHidemodal.addEventListener('hidden.bs.modal', function () {
+    agreementModal.show()
+});
+
+const successOperatorHidemodal = document.getElementById("success-modal-operator");
+successOperatorHidemodal.addEventListener('hidden.bs.modal', function () {
+    agreementModal.show()
+});
