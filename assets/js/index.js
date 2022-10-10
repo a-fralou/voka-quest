@@ -290,7 +290,7 @@ jsBtnFinish.addEventListener('click', function () {
             submitFinish(false)
         }
     } else {
-        submitFinish(false)
+        ctaModal()
     }
 });
 
@@ -312,8 +312,8 @@ function ctaModal() {
         setError('.form-error-code', 'Заполните поле с кодом!')
         return;
     }
-
-    confirmModal.show()
+    localStorage.setItem(CTA, false)
+    agreementModal.show()
 }
 
 const jsBtnYaes = document.querySelector(".js-btn-yes");
