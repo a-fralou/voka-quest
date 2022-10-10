@@ -121,10 +121,11 @@ async function submitPhone() {
             });
         })
 
-        if (!element.querySelector('input[type=checkbox]:checked')) {
 
+        if (!element.querySelector('input[type=checkbox]:checked')) {
             const error = element.querySelector('.form-error');
             console.log(error)
+
             error.classList.add("form-error--show")
             error.innerHTML = 'Выберите 1 из вариантов!';
             return;
@@ -280,9 +281,15 @@ jsInputAgree.addEventListener('change', function () {
 
 const jsBtnFinish = document.querySelector(".js-btn-finish");
 jsBtnFinish.addEventListener('click', function () {
-    const getGrade = document.querySelector('input[name="recomendation"]:checked').value;
-    if (getGrade < 8) {
-        ctaModal()
+    const getGrade = document.querySelector('input[name="recomendation"]:checked');
+    if (getGrade) {
+        if (getGrade.value < 8) {
+            ctaModal()
+        } else {
+            submitFinish(false)
+        }
+    } else {
+        submitFinish(false)
     }
 });
 
@@ -356,6 +363,9 @@ async function submitFinish(cta) {
         document.querySelector('.js-btn-yes').setAttribute('disabled', 'disabled')
         document.querySelector('.js-btn-no').setAttribute('disabled', 'disabled')
 
+        document.querySelector('.js-btn-finish').classList.add("btn--load")
+        document.querySelector('.js-btn-finish').setAttribute('disabled', 'disabled')
+
         const response = await fetch(url, {
             method: 'POST',
             body: JSON.stringify(data),
@@ -374,6 +384,9 @@ async function submitFinish(cta) {
                 document.querySelector('.js-btn-yes').removeAttribute('disabled')
                 document.querySelector('.js-btn-no').removeAttribute('disabled')
 
+                document.querySelector('.js-btn-finish').classList.remove("btn--load")
+                document.querySelector('.js-btn-finish').removeAttribute('disabled', 'disabled')
+
                 if (cta) {
                     successModalOperator.show()
                 } else {
@@ -385,6 +398,8 @@ async function submitFinish(cta) {
                 document.querySelector('.js-btn-no').classList.remove("btn--load")
                 document.querySelector('.js-btn-yes').removeAttribute('disabled')
                 document.querySelector('.js-btn-no').removeAttribute('disabled')
+                document.querySelector('.js-btn-finish').classList.remove("btn--load")
+                document.querySelector('.js-btn-finish').removeAttribute('disabled', 'disabled')
             }
 
         }, 500);
@@ -395,6 +410,8 @@ async function submitFinish(cta) {
             document.querySelector('.js-btn-no').classList.remove("btn--load")
             document.querySelector('.js-btn-yes').removeAttribute('disabled')
             document.querySelector('.js-btn-no').removeAttribute('disabled')
+            document.querySelector('.js-btn-finish').classList.remove("btn--load")
+            document.querySelector('.js-btn-finish').removeAttribute('disabled', 'disabled')
             setError('.form-error-end', 'Ошибка!')
             confirmModal.hide()
             console.error('Ошибка:', err);
