@@ -121,10 +121,11 @@ async function submitPhone() {
             });
         })
 
-        if (!element.querySelector('input[type=checkbox]:checked')) {
 
+        if (!element.querySelector('input[type=checkbox]:checked')) {
             const error = element.querySelector('.form-error');
             console.log(error)
+
             error.classList.add("form-error--show")
             error.innerHTML = 'Выберите 1 из вариантов!';
             return;
