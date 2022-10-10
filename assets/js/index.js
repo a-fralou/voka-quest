@@ -10,9 +10,10 @@ const agreementModal = new Modal(document.getElementById('agreement-modal'), {})
 const FINISH_LOCAL_STORAGE = 'finish';
 const PHONE_VALUE_FROM_MASK = 'phone';
 const CODE_VALUE_FROM_MASK = 'code';
+const CTA = 'cta';
 
 const removeLocalData = () => {
-    [FINISH_LOCAL_STORAGE, PHONE_VALUE_FROM_MASK, CODE_VALUE_FROM_MASK].forEach(function (item) {
+    [FINISH_LOCAL_STORAGE, PHONE_VALUE_FROM_MASK, CODE_VALUE_FROM_MASK, CTA].forEach(function (item) {
         localStorage.removeItem(item);
     });
 }
@@ -317,12 +318,19 @@ function ctaModal() {
 
 const jsBtnYaes = document.querySelector(".js-btn-yes");
 jsBtnYaes.addEventListener('click', function () {
-    submitFinish(true)
+    localStorage.setItem(CTA, true)
+    agreementModal.show()
 });
 
 const jsBtnNo = document.querySelector(".js-btn-no");
 jsBtnNo.addEventListener('click', function () {
-    submitFinish(false)
+    localStorage.setItem(CTA, false)
+    agreementModal.show()
+});
+
+const btnClose = document.querySelector(".btn-close");
+btnClose.addEventListener('click', function () {
+    submitFinish(JSON.parse(localStorage.getItem(CTA)))
 });
 
 
@@ -358,11 +366,8 @@ async function submitFinish(cta) {
     try {
         removeError('.form-error-phone')
         removeError('.form-error-code')
-        document.querySelector('.js-btn-yes').classList.add("btn--load")
-        document.querySelector('.js-btn-no').classList.add("btn--load")
-        document.querySelector('.js-btn-yes').setAttribute('disabled', 'disabled')
-        document.querySelector('.js-btn-no').setAttribute('disabled', 'disabled')
-
+        btnClose.classList.add("btn--load")
+        btnClose.setAttribute('disabled', 'disabled')
         document.querySelector('.js-btn-finish').classList.add("btn--load")
         document.querySelector('.js-btn-finish').setAttribute('disabled', 'disabled')
 
@@ -377,13 +382,11 @@ async function submitFinish(cta) {
         const { status, info } = await response.json();
 
         setTimeout(() => {
+            agreementModal.hide()
             confirmModal.hide()
             if (status) {
-                document.querySelector('.js-btn-yes').classList.remove("btn--load")
-                document.querySelector('.js-btn-no').classList.remove("btn--load")
-                document.querySelector('.js-btn-yes').removeAttribute('disabled')
-                document.querySelector('.js-btn-no').removeAttribute('disabled')
-
+                btnClose.classList.remove("btn--load")
+                btnClose.removeAttribute('disabled', 'disabled')
                 document.querySelector('.js-btn-finish').classList.remove("btn--load")
                 document.querySelector('.js-btn-finish').removeAttribute('disabled', 'disabled')
 
@@ -394,10 +397,8 @@ async function submitFinish(cta) {
                 }
             } else {
                 setError('.form-error-code', info)
-                document.querySelector('.js-btn-yes').classList.remove("btn--load")
-                document.querySelector('.js-btn-no').classList.remove("btn--load")
-                document.querySelector('.js-btn-yes').removeAttribute('disabled')
-                document.querySelector('.js-btn-no').removeAttribute('disabled')
+                btnClose.classList.remove("btn--load")
+                btnClose.removeAttribute('disabled', 'disabled')
                 document.querySelector('.js-btn-finish').classList.remove("btn--load")
                 document.querySelector('.js-btn-finish').removeAttribute('disabled', 'disabled')
             }
@@ -406,30 +407,14 @@ async function submitFinish(cta) {
 
     } catch (err) {
         setTimeout(() => {
-            document.querySelector('.js-btn-yes').classList.remove("btn--load")
-            document.querySelector('.js-btn-no').classList.remove("btn--load")
-            document.querySelector('.js-btn-yes').removeAttribute('disabled')
-            document.querySelector('.js-btn-no').removeAttribute('disabled')
+            btnClose.classList.remove("btn--load")
+            btnClose.removeAttribute('disabled', 'disabled')
             document.querySelector('.js-btn-finish').classList.remove("btn--load")
             document.querySelector('.js-btn-finish').removeAttribute('disabled', 'disabled')
             setError('.form-error-end', 'Ошибка!')
+            agreementModal.hide()
             confirmModal.hide()
             console.error('Ошибка:', err);
         }, 500);
     }
 }
-
-const btnClose = document.querySelector(".btn-close");
-btnClose.addEventListener('click', function () {
-    agreementModal.hide()
-});
-
-const successHidemodal = document.getElementById("success-modal");
-successHidemodal.addEventListener('hidden.bs.modal', function () {
-    agreementModal.show()
-});
-
-const successOperatorHidemodal = document.getElementById("success-modal-operator");
-successOperatorHidemodal.addEventListener('hidden.bs.modal', function () {
-    agreementModal.show()
-});
