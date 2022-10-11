@@ -516,6 +516,9 @@ async function submitFinish(cta) {
                 } else {
                     successModal.show()
                 }
+                setTimeout(() => {
+                    window.location.href=window.location.href
+                }, 3000);
             } else {
                 setError('.form-error-code', info)
                 btnClose.classList.remove("btn--load")
