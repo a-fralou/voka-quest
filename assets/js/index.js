@@ -104,7 +104,9 @@ async function submitPhone() {
         }
     }
 
-    choiseData.forEach(element => {
+    for (let i = 0; i < choiseData.length; i++) {
+        const element = choiseData[i];
+
         element.querySelectorAll('input[type=checkbox]').forEach((el) => {
             el.addEventListener('change', function () {
                 console.log(this.value)
@@ -114,7 +116,7 @@ async function submitPhone() {
                 if (!element.querySelector('input[type=checkbox]:checked')) {
 
                     const error = element.querySelector('.form-error');
-                    console.log(error)
+                    // console.log(error)
                     error.classList.add("form-error--show")
                     error.innerHTML = 'Выберите 1 из вариантов!';
                     return;
@@ -125,13 +127,43 @@ async function submitPhone() {
 
         if (!element.querySelector('input[type=checkbox]:checked')) {
             const error = element.querySelector('.form-error');
-            console.log(error)
+            // console.log(error)
 
             error.classList.add("form-error--show")
             error.innerHTML = 'Выберите 1 из вариантов!';
             return;
         }
-    });
+        
+    }
+
+    // choiseData.forEach(element => {
+    //     element.querySelectorAll('input[type=checkbox]').forEach((el) => {
+    //         el.addEventListener('change', function () {
+    //             console.log(this.value)
+    //             const error = element.querySelector('.form-error');
+    //             error.classList.remove("form-error--show")
+    //             error.innerHTML = '';
+    //             if (!element.querySelector('input[type=checkbox]:checked')) {
+
+    //                 const error = element.querySelector('.form-error');
+    //                 // console.log(error)
+    //                 error.classList.add("form-error--show")
+    //                 error.innerHTML = 'Выберите 1 из вариантов!';
+    //                 return;
+    //             }
+    //         });
+    //     })
+
+
+    //     if (!element.querySelector('input[type=checkbox]:checked')) {
+    //         const error = element.querySelector('.form-error');
+    //         // console.log(error)
+
+    //         error.classList.add("form-error--show")
+    //         error.innerHTML = 'Выберите 1 из вариантов!';
+    //         return;
+    //     }
+    // });
 
     if (!getFieldName.value) {
         setError('.form-error-name', 'Заполните имя!')
