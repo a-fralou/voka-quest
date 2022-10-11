@@ -242,6 +242,38 @@ async function submitCode() {
     const getPhoneValue = localStorage.getItem(PHONE_VALUE_FROM_MASK)
     const getCodeValue = localStorage.getItem(CODE_VALUE_FROM_MASK)
 
+    for (let i = 0; i < choiseData.length; i++) {
+        const element = choiseData[i];
+
+        element.querySelectorAll('input[type=checkbox]').forEach((el) => {
+            el.addEventListener('change', function () {
+                console.log(this.value)
+                const error = element.querySelector('.form-error');
+                error.classList.remove("form-error--show")
+                error.innerHTML = '';
+                if (!element.querySelector('input[type=checkbox]:checked')) {
+
+                    const error = element.querySelector('.form-error');
+                    // console.log(error)
+                    error.classList.add("form-error--show")
+                    error.innerHTML = 'Выберите 1 из вариантов!';
+                    return;
+                }
+            });
+        })
+
+
+        if (!element.querySelector('input[type=checkbox]:checked')) {
+            const error = element.querySelector('.form-error');
+            // console.log(error)
+
+            error.classList.add("form-error--show")
+            error.innerHTML = 'Выберите 1 из вариантов!';
+            return;
+        }
+        
+    }
+
 
     if (!getFieldName.value) {
         setError('.form-error-name', 'Заполните имя!')
@@ -319,7 +351,8 @@ jsBtnFinish.addEventListener('click', function () {
         if (getGrade.value < 8) {
             ctaModal()
         } else {
-            submitFinish(false)
+            // submitFinish(false)
+            agreementModal.show()
         }
     } else {
         submitFinish(false)
@@ -329,6 +362,38 @@ jsBtnFinish.addEventListener('click', function () {
 function ctaModal() {
     const getPhoneValue = localStorage.getItem(PHONE_VALUE_FROM_MASK)
     const getCodeValue = localStorage.getItem(CODE_VALUE_FROM_MASK)
+
+    for (let i = 0; i < choiseData.length; i++) {
+        const element = choiseData[i];
+
+        element.querySelectorAll('input[type=checkbox]').forEach((el) => {
+            el.addEventListener('change', function () {
+                console.log(this.value)
+                const error = element.querySelector('.form-error');
+                error.classList.remove("form-error--show")
+                error.innerHTML = '';
+                if (!element.querySelector('input[type=checkbox]:checked')) {
+
+                    const error = element.querySelector('.form-error');
+                    // console.log(error)
+                    error.classList.add("form-error--show")
+                    error.innerHTML = 'Выберите 1 из вариантов!';
+                    return;
+                }
+            });
+        })
+
+
+        if (!element.querySelector('input[type=checkbox]:checked')) {
+            const error = element.querySelector('.form-error');
+            // console.log(error)
+
+            error.classList.add("form-error--show")
+            error.innerHTML = 'Выберите 1 из вариантов!';
+            return;
+        }
+        
+    }
 
     if (!getFieldName.value) {
         setError('.form-error-name', 'Заполните имя!')
@@ -371,6 +436,37 @@ async function submitFinish(cta) {
     const url = form.getAttribute('data-form-api');
     const getPhoneValue = localStorage.getItem(PHONE_VALUE_FROM_MASK)
     const getCodeValue = localStorage.getItem(CODE_VALUE_FROM_MASK)
+    for (let i = 0; i < choiseData.length; i++) {
+        const element = choiseData[i];
+
+        element.querySelectorAll('input[type=checkbox]').forEach((el) => {
+            el.addEventListener('change', function () {
+                console.log(this.value)
+                const error = element.querySelector('.form-error');
+                error.classList.remove("form-error--show")
+                error.innerHTML = '';
+                if (!element.querySelector('input[type=checkbox]:checked')) {
+
+                    const error = element.querySelector('.form-error');
+                    // console.log(error)
+                    error.classList.add("form-error--show")
+                    error.innerHTML = 'Выберите 1 из вариантов!';
+                    return;
+                }
+            });
+        })
+
+
+        if (!element.querySelector('input[type=checkbox]:checked')) {
+            const error = element.querySelector('.form-error');
+            // console.log(error)
+
+            error.classList.add("form-error--show")
+            error.innerHTML = 'Выберите 1 из вариантов!';
+            return;
+        }
+        
+    }
     if (!getFieldName.value) {
         setError('.form-error-name', 'Заполните имя!')
         return;
@@ -427,6 +523,10 @@ async function submitFinish(cta) {
                 } else {
                     successModal.show()
                 }
+
+                setTimeout(() => {
+                    window.location.href=window.location.href
+                }, 3000);
             } else {
                 setError('.form-error-code', info)
                 btnClose.classList.remove("btn--load")
