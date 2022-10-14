@@ -71,4 +71,13 @@
     &--show {
       display: block;
     }
+
+    &-b {
+      bottom: 0;
+    }
+}
+
+.form-success--show {
+   display: block;
+   color: #43efce;
 }

@@ -27,6 +27,10 @@
          padding-left: 35px;
       }
 
+      span {
+         color: #2fdcb9;
+      }
+
       &::before {
          content: "";         
          width: 22px;
@@ -110,6 +114,10 @@
 
       &:checked + #{$parent}__lable::after{
          opacity: 1;
+      }
+
+      &:disabled + #{$parent}__lable {
+         opacity: 0.5;
       }
    }
 

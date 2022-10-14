@@ -24,6 +24,12 @@ const setError = (className, text = 'Error') => {
     error.innerHTML = text;
 }
 
+const setSuccess = (className, text = 'Error') => {
+    const error = document.querySelector(className);
+    error.classList.add("form-success--show")
+    error.innerHTML = text;
+}
+
 const removeError = (className) => {
     const error = document.querySelector(className);
     error.classList.remove("form-error--show")
@@ -107,13 +113,23 @@ async function submitPhone() {
     for (let i = 0; i < choiseData.length; i++) {
         const element = choiseData[i];
 
-        element.querySelectorAll('input[type=checkbox]').forEach((el) => {
+        element.querySelectorAll('input[type=checkbox], input[type=radio]').forEach((el) => {
             el.addEventListener('change', function () {
                 console.log(this.value)
                 const error = element.querySelector('.form-error');
                 error.classList.remove("form-error--show")
                 error.innerHTML = '';
-                if (!element.querySelector('input[type=checkbox]:checked')) {
+
+                if (!element.querySelector('input[type=checkbox]:checked') && element.querySelector('input').getAttribute('type') === 'checkbox') {
+
+                    const error = element.querySelector('.form-error');
+                    console.log('error')
+                    error.classList.add("form-error--show")
+                    error.innerHTML = 'Выберите 1 из вариантов!';
+                    return;
+                }
+
+                if (!element.querySelector('input[type=radio]:checked') && element.querySelector('input').getAttribute('type') === 'radio') {
 
                     const error = element.querySelector('.form-error');
                     // console.log(error)
@@ -125,45 +141,21 @@ async function submitPhone() {
         })
 
 
-        if (!element.querySelector('input[type=checkbox]:checked')) {
+        if (!element.querySelector('input[type=checkbox]:checked') && element.querySelector('input').getAttribute('type') === 'checkbox') {
             const error = element.querySelector('.form-error');
-            // console.log(error)
-
             error.classList.add("form-error--show")
             error.innerHTML = 'Выберите 1 из вариантов!';
             return;
         }
-        
+
+        if (!element.querySelector('input[type=radio]:checked') && element.querySelector('input').getAttribute('type') === 'radio') {
+            const error = element.querySelector('.form-error');
+            error.classList.add("form-error--show")
+            error.innerHTML = 'Выберите 1 из вариантов!';
+            return;
+        }
+
     }
-
-    // choiseData.forEach(element => {
-    //     element.querySelectorAll('input[type=checkbox]').forEach((el) => {
-    //         el.addEventListener('change', function () {
-    //             console.log(this.value)
-    //             const error = element.querySelector('.form-error');
-    //             error.classList.remove("form-error--show")
-    //             error.innerHTML = '';
-    //             if (!element.querySelector('input[type=checkbox]:checked')) {
-
-    //                 const error = element.querySelector('.form-error');
-    //                 // console.log(error)
-    //                 error.classList.add("form-error--show")
-    //                 error.innerHTML = 'Выберите 1 из вариантов!';
-    //                 return;
-    //             }
-    //         });
-    //     })
-
-
-    //     if (!element.querySelector('input[type=checkbox]:checked')) {
-    //         const error = element.querySelector('.form-error');
-    //         // console.log(error)
-
-    //         error.classList.add("form-error--show")
-    //         error.innerHTML = 'Выберите 1 из вариантов!';
-    //         return;
-    //     }
-    // });
 
     if (!getFieldName.value) {
         setError('.form-error-name', 'Заполните имя!')
@@ -231,8 +223,10 @@ function agreeFunc() {
     if (!jsInputAgree.checked) {
         document.querySelector(".js-btn-finish").setAttribute('disabled', 'disabled');
     }
-    if (jsInputAgree.checked && localStorage.getItem(FINISH_LOCAL_STORAGE)) {
-        document.querySelector(".js-btn-finish").removeAttribute('disabled');
+
+       if (jsInputAgree.checked && localStorage.getItem(FINISH_LOCAL_STORAGE)) {
+    // if (jsInputAgree.checked) {
+        agreementModal.show()
     }
 }
 
@@ -245,13 +239,23 @@ async function submitCode() {
     for (let i = 0; i < choiseData.length; i++) {
         const element = choiseData[i];
 
-        element.querySelectorAll('input[type=checkbox]').forEach((el) => {
+        element.querySelectorAll('input[type=checkbox], input[type=radio]').forEach((el) => {
             el.addEventListener('change', function () {
                 console.log(this.value)
                 const error = element.querySelector('.form-error');
                 error.classList.remove("form-error--show")
                 error.innerHTML = '';
-                if (!element.querySelector('input[type=checkbox]:checked')) {
+
+                if (!element.querySelector('input[type=checkbox]:checked') && element.querySelector('input').getAttribute('type') === 'checkbox') {
+
+                    const error = element.querySelector('.form-error');
+                    console.log('error')
+                    error.classList.add("form-error--show")
+                    error.innerHTML = 'Выберите 1 из вариантов!';
+                    return;
+                }
+
+                if (!element.querySelector('input[type=radio]:checked') && element.querySelector('input').getAttribute('type') === 'radio') {
 
                     const error = element.querySelector('.form-error');
                     // console.log(error)
@@ -263,15 +267,20 @@ async function submitCode() {
         })
 
 
-        if (!element.querySelector('input[type=checkbox]:checked')) {
+        if (!element.querySelector('input[type=checkbox]:checked') && element.querySelector('input').getAttribute('type') === 'checkbox') {
             const error = element.querySelector('.form-error');
-            // console.log(error)
-
             error.classList.add("form-error--show")
             error.innerHTML = 'Выберите 1 из вариантов!';
             return;
         }
-        
+
+        if (!element.querySelector('input[type=radio]:checked') && element.querySelector('input').getAttribute('type') === 'radio') {
+            const error = element.querySelector('.form-error');
+            error.classList.add("form-error--show")
+            error.innerHTML = 'Выберите 1 из вариантов!';
+            return;
+        }
+
     }
 
 
@@ -317,9 +326,11 @@ async function submitCode() {
         setTimeout(() => {
             if (status) {
                 localStorage.setItem(FINISH_LOCAL_STORAGE, true);
+                document.querySelector('.js-input-agree').removeAttribute('disabled');
                 agreeFunc()
                 this.classList.remove("btn--load");
                 this.removeAttribute('disabled');
+                setSuccess('.form-error-code', info)
             } else {
                 setError('.form-error-code', info)
                 this.classList.remove("btn--load");
@@ -351,8 +362,9 @@ jsBtnFinish.addEventListener('click', function () {
         if (getGrade.value < 8) {
             ctaModal()
         } else {
-            // submitFinish(false)
-            agreementModal.show()
+            submitFinish(false)
+            // submitFinish(JSON.parse(localStorage.getItem(CTA)))
+            // agreementModal.show()
         }
     } else {
         submitFinish(false)
@@ -366,13 +378,23 @@ function ctaModal() {
     for (let i = 0; i < choiseData.length; i++) {
         const element = choiseData[i];
 
-        element.querySelectorAll('input[type=checkbox]').forEach((el) => {
+        element.querySelectorAll('input[type=checkbox], input[type=radio]').forEach((el) => {
             el.addEventListener('change', function () {
                 console.log(this.value)
                 const error = element.querySelector('.form-error');
                 error.classList.remove("form-error--show")
                 error.innerHTML = '';
-                if (!element.querySelector('input[type=checkbox]:checked')) {
+
+                if (!element.querySelector('input[type=checkbox]:checked') && element.querySelector('input').getAttribute('type') === 'checkbox') {
+
+                    const error = element.querySelector('.form-error');
+                    console.log('error')
+                    error.classList.add("form-error--show")
+                    error.innerHTML = 'Выберите 1 из вариантов!';
+                    return;
+                }
+
+                if (!element.querySelector('input[type=radio]:checked') && element.querySelector('input').getAttribute('type') === 'radio') {
 
                     const error = element.querySelector('.form-error');
                     // console.log(error)
@@ -384,15 +406,20 @@ function ctaModal() {
         })
 
 
-        if (!element.querySelector('input[type=checkbox]:checked')) {
+        if (!element.querySelector('input[type=checkbox]:checked') && element.querySelector('input').getAttribute('type') === 'checkbox') {
             const error = element.querySelector('.form-error');
-            // console.log(error)
-
             error.classList.add("form-error--show")
             error.innerHTML = 'Выберите 1 из вариантов!';
             return;
         }
-        
+
+        if (!element.querySelector('input[type=radio]:checked') && element.querySelector('input').getAttribute('type') === 'radio') {
+            const error = element.querySelector('.form-error');
+            error.classList.add("form-error--show")
+            error.innerHTML = 'Выберите 1 из вариантов!';
+            return;
+        }
+
     }
 
     if (!getFieldName.value) {
@@ -416,18 +443,21 @@ function ctaModal() {
 const jsBtnYaes = document.querySelector(".js-btn-yes");
 jsBtnYaes.addEventListener('click', function () {
     localStorage.setItem(CTA, true)
-    agreementModal.show()
+    // agreementModal.show()
+    submitFinish(true)
 });
 
 const jsBtnNo = document.querySelector(".js-btn-no");
 jsBtnNo.addEventListener('click', function () {
     localStorage.setItem(CTA, false)
-    agreementModal.show()
+    // agreementModal.show()
+    submitFinish(false)
 });
 
 const btnClose = document.querySelector(".btn-close");
 btnClose.addEventListener('click', function () {
-    submitFinish(JSON.parse(localStorage.getItem(CTA)))
+    agreementModal.hide()
+    document.querySelector(".js-btn-finish").removeAttribute('disabled');
 });
 
 
@@ -439,13 +469,23 @@ async function submitFinish(cta) {
     for (let i = 0; i < choiseData.length; i++) {
         const element = choiseData[i];
 
-        element.querySelectorAll('input[type=checkbox]').forEach((el) => {
+        element.querySelectorAll('input[type=checkbox], input[type=radio]').forEach((el) => {
             el.addEventListener('change', function () {
                 console.log(this.value)
                 const error = element.querySelector('.form-error');
                 error.classList.remove("form-error--show")
                 error.innerHTML = '';
-                if (!element.querySelector('input[type=checkbox]:checked')) {
+
+                if (!element.querySelector('input[type=checkbox]:checked') && element.querySelector('input').getAttribute('type') === 'checkbox') {
+
+                    const error = element.querySelector('.form-error');
+                    console.log('error')
+                    error.classList.add("form-error--show")
+                    error.innerHTML = 'Выберите 1 из вариантов!';
+                    return;
+                }
+
+                if (!element.querySelector('input[type=radio]:checked') && element.querySelector('input').getAttribute('type') === 'radio') {
 
                     const error = element.querySelector('.form-error');
                     // console.log(error)
@@ -457,15 +497,20 @@ async function submitFinish(cta) {
         })
 
 
-        if (!element.querySelector('input[type=checkbox]:checked')) {
+        if (!element.querySelector('input[type=checkbox]:checked') && element.querySelector('input').getAttribute('type') === 'checkbox') {
             const error = element.querySelector('.form-error');
-            // console.log(error)
-
             error.classList.add("form-error--show")
             error.innerHTML = 'Выберите 1 из вариантов!';
             return;
         }
-        
+
+        if (!element.querySelector('input[type=radio]:checked') && element.querySelector('input').getAttribute('type') === 'radio') {
+            const error = element.querySelector('.form-error');
+            error.classList.add("form-error--show")
+            error.innerHTML = 'Выберите 1 из вариантов!';
+            return;
+        }
+
     }
     if (!getFieldName.value) {
         setError('.form-error-name', 'Заполните имя!')
@@ -499,6 +544,11 @@ async function submitFinish(cta) {
         document.querySelector('.js-btn-finish').classList.add("btn--load")
         document.querySelector('.js-btn-finish').setAttribute('disabled', 'disabled')
 
+        document.querySelector('.js-btn-yes').classList.add("btn--load")
+        document.querySelector('.js-btn-yes').setAttribute('disabled', 'disabled')
+        document.querySelector('.js-btn-no').classList.add("btn--load")
+        document.querySelector('.js-btn-no').setAttribute('disabled', 'disabled')
+
         const response = await fetch(url, {
             method: 'POST',
             body: JSON.stringify(data),
@@ -518,6 +568,12 @@ async function submitFinish(cta) {
                 document.querySelector('.js-btn-finish').classList.remove("btn--load")
                 document.querySelector('.js-btn-finish').removeAttribute('disabled', 'disabled')
 
+
+                document.querySelector('.js-btn-yes').classList.remove("btn--load")
+                document.querySelector('.js-btn-yes').removeAttribute('disabled')
+                document.querySelector('.js-btn-no').classList.remove("btn--load")
+                document.querySelector('.js-btn-no').removeAttribute('disabled')
+
                 if (cta) {
                     successModalOperator.show()
                 } else {
@@ -525,7 +581,7 @@ async function submitFinish(cta) {
                 }
 
                 setTimeout(() => {
-                    window.location.href=window.location.href
+                    window.location.href = window.location.href
                 }, 3000);
             } else {
                 setError('.form-error-code', info)
@@ -533,6 +589,11 @@ async function submitFinish(cta) {
                 btnClose.removeAttribute('disabled', 'disabled')
                 document.querySelector('.js-btn-finish').classList.remove("btn--load")
                 document.querySelector('.js-btn-finish').removeAttribute('disabled', 'disabled')
+
+                document.querySelector('.js-btn-yes').classList.remove("btn--load")
+                document.querySelector('.js-btn-yes').removeAttribute('disabled')
+                document.querySelector('.js-btn-no').classList.remove("btn--load")
+                document.querySelector('.js-btn-no').removeAttribute('disabled')
             }
 
         }, 500);
@@ -543,6 +604,11 @@ async function submitFinish(cta) {
             btnClose.removeAttribute('disabled', 'disabled')
             document.querySelector('.js-btn-finish').classList.remove("btn--load")
             document.querySelector('.js-btn-finish').removeAttribute('disabled', 'disabled')
+
+            document.querySelector('.js-btn-yes').classList.remove("btn--load")
+            document.querySelector('.js-btn-yes').removeAttribute('disabled')
+            document.querySelector('.js-btn-no').classList.remove("btn--load")
+            document.querySelector('.js-btn-no').removeAttribute('disabled')
             setError('.form-error-end', 'Ошибка!')
             agreementModal.hide()
             confirmModal.hide()
@@ -550,3 +616,23 @@ async function submitFinish(cta) {
         }, 500);
     }
 }
+
+// .js-other
+
+const jsOther = document.querySelectorAll(".js-other");
+Array.from(jsOther).forEach(function (element) {
+    const el = element.closest('.checkbox__other')
+
+
+    element.addEventListener('input', function () {
+        if (this.value.length) {
+            el.querySelector('input').checked = true
+
+            const error = element.closest('.js-choise').querySelector('.form-error');
+            error.classList.remove("form-error--show")
+            error.innerHTML = '';
+        } else {
+            el.querySelector('input').checked = false
+        }
+    });
+});

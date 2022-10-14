@@ -2,9 +2,9 @@
    h2.label-title.label-title_decorate Какова вероятность, что Вы порекомендуете VOKA своим друзьям и близким?
    .form-field
       p.details.mt-1 Где 1 - «Ни в коем случае не буду рекомендовать», 10 - «Обязательно порекомендую»
-      .form-field_row 
+      .form-field_row.js-choise
          .checkbox.checkbox_vertical
-            input.checkbox__input(type="radio" name="recomendation" id="checkbox_1" checked value="1") 
+            input.checkbox__input(type="radio" name="recomendation" id="checkbox_1" value="1") 
             label.checkbox__lable(for="checkbox_1") 1 
          .checkbox.checkbox_vertical            
             input.checkbox__input(type="radio" name="recomendation" id="checkbox_2" value="2") 
@@ -32,4 +32,5 @@
             label.checkbox__lable(for="checkbox_9") 9 
          .checkbox.checkbox_vertical            
             input.checkbox__input(type="radio" name="recomendation" id="checkbox_10" value="10")   
-            label.checkbox__lable(for="checkbox_10") 10                    
+            label.checkbox__lable(for="checkbox_10") 10
+         .form-error.form-error-b                   
