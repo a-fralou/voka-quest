@@ -8,9 +8,10 @@
    background-size: cover;
 
    @media screen and (max-width: 640px) {
-      padding-top: 300px;
+      padding-top: 350px;
       padding-bottom: 35px;
       background-image: url(../images/voka_new_season_mob.jpg);
+      background-position-y: top;
    }
 }
 
