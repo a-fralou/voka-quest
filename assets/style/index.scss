@@ -201,3 +201,13 @@ body {
         background-clip: content-box;
     }
 }
+
+.header {
+    .description {
+        span {
+            @media screen and (min-width: 640px) {
+                display: block;
+            }
+        }
+    }
+}
